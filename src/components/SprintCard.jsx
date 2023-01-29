@@ -1,8 +1,8 @@
-import Task from "../components/Task";
+import TaskListComponent from "../components/TaskListComponent";
 
 
 function SprintCard({   title, dueDate, currentStatus, tasks })  {
-  
+  console.log("tasks from sprintcard: ", tasks);
   return (
     <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
       <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
@@ -11,7 +11,7 @@ function SprintCard({   title, dueDate, currentStatus, tasks })  {
         <h4 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{dueDate}</h4>
         <h4 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{currentStatus}</h4>
         </div>
-        <Task  {...tasks}/>
+        <TaskListComponent tasks={tasks} />
     </div>
     </div>
   )

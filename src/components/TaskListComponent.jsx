@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-function Task({ tasks }) {
+
+const TaskListComponent = ({tasks}) => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [checked, setChecked] = useState(false);
@@ -22,7 +23,7 @@ function Task({ tasks }) {
       })
       .catch((error) => console.log(error));
   };
-
+  console.log("props tasks from task", tasks)
   return (
     <div className="task">
       <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
@@ -44,9 +45,9 @@ function Task({ tasks }) {
             </form>
           </div>
           <div>
-           
-              <div className="flex mb-4 items-center">
-                <p className="w-full text-grey-darkest">task description</p>
+            {tasks.map(task => 
+              <div key={task._id} className="flex mb-4 items-center">
+                <p className="w-full text-grey-darkest">{task.description}</p>
                 <button className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green-500 border-green-500 hover:bg-green">
                   Done
                 </button>
@@ -54,8 +55,8 @@ function Task({ tasks }) {
                   Remove
                 </button>
               </div>
-          
-          </div>
+            )}
+</div>
         </div>
       </div>
       {/* <form onSubmit={handleSubmit}>
@@ -79,4 +80,4 @@ function Task({ tasks }) {
   );
 }
 
-export default Task;
+export default TaskListComponent;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import Task from "./Task";
+// import TaskListComponent from "../components/TaskListComponent";
 // const API_URL = "http://localhost:5005";
  
 function AddProject(props) {
@@ -48,7 +48,6 @@ function AddProject(props) {
         <option value="upcoming">upcoming</option>
         <option value="past">past</option>
         </select> 
-        <Task />
         <button type="submit">Save Sprint</button>
       </form>
     </div>
