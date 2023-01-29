@@ -8,7 +8,7 @@ const TaskListComponent = ({ taskList, sprintId }) => {
   const [tasks, setTasks] = useState(taskList);
 
   const handleChecked = (e, taskId) =>{
-    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`, e)
+    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`, {checked: e})
     console.log("taskid from tasklistcomponenet: ", taskId)
 
   }
@@ -20,7 +20,7 @@ const TaskListComponent = ({ taskList, sprintId }) => {
       )
       .then((response) => {
         const updatedTaskList = [
-          ...tasks.filter((task) => !response.data.includes(task._id)),
+          ...tasks.filter((task) => response.data.includes(task._id)),
         ];
         setTasks(updatedTaskList);
       });
