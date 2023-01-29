@@ -91,23 +91,6 @@ const TaskListComponent = ({ taskList, sprintId }) => {
           </div>
         </div>
       </div>
-      {/* <form onSubmit={handleSubmit}>
-        <input type="checkbox" name="checked" id="checked" />
-        <input
-          placeholder="Description"
-          type="text"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
- 
-        <label>Due:</label>
-        <input type="date" name="dueDate" id="dueDate" value={dueDate}
-          onChange={(e) => setDueDate(e.target.value)} />
-       
-       
-        <button type="submit">Save task</button>
-      </form> */}
     </div>
   );
 };
