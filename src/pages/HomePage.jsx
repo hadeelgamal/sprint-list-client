@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Task from "../components/Task";
 
 function HomePage() {
     return (
@@ -7,6 +8,7 @@ function HomePage() {
             <Link to="/signup"> <button>Sign Up</button> </Link>
             <Link to="/login"> <button>Login</button> </Link>
             <Link to="/dashboard"> <button>Dashboard</button> </Link>
+            <Task />
 
            
       </div>
