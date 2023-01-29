@@ -1,21 +1,30 @@
 import { useState } from "react";
 import axios from "axios";
 
-
-const TaskListComponent = ({taskList, sprintId}) => {
+const TaskListComponent = ({ taskList, sprintId }) => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [checked, setChecked] = useState(false);
-  const [tasks, setTasks] = useState(taskList)
+  const [tasks, setTasks] = useState(taskList);
 
-  const handleRemove = (taskId) =>{
-    axios
-    .delete(`${process.env.REACT_APP_API_URL}/api/tasks/${sprintId}/${taskId}`)
-    .then((response) => {
-      const updatedTaskList = [...tasks.filter(task => !response.data.includes(task._id))]
-      setTasks(updatedTaskList)
-    })
+  const handleChecked = (e, taskId) =>{
+    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`, e)
+    console.log("taskid from tasklistcomponenet: ", taskId)
+
   }
+
+  const handleRemove = (taskId) => {
+    axios
+      .delete(
+        `${process.env.REACT_APP_API_URL}/api/tasks/${sprintId}/${taskId}`
+      )
+      .then((response) => {
+        const updatedTaskList = [
+          ...tasks.filter((task) => !response.data.includes(task._id)),
+        ];
+        setTasks(updatedTaskList);
+      });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     // Grab the state variable values
@@ -25,16 +34,16 @@ const TaskListComponent = ({taskList, sprintId}) => {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/tasks`, newTask)
       .then((response) => {
-        const updatedTaskList = [...tasks, response.data]
+        const updatedTaskList = [...tasks, response.data];
         // Reset the state
         setDescription("");
         setDueDate("");
         setChecked(false);
-        setTasks(updatedTaskList)
+        setTasks(updatedTaskList);
       })
       .catch((error) => console.log(error));
   };
-  console.log("props tasks from task", tasks)
+  console.log("props tasks from task", tasks);
   return (
     <div className="task">
       <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
@@ -56,20 +65,30 @@ const TaskListComponent = ({taskList, sprintId}) => {
             </form>
           </div>
           <div>
-            {tasks.map(task => 
+            {tasks.map((task) => (
               <div key={task._id} className="flex mb-4 items-center">
                 <p className="w-full text-grey-darkest">{task.description}</p>
-                <button className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green-500 border-green-500 hover:bg-green">
+                {/* <button className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green-500 border-green-500 hover:bg-green">
                   Done
-                </button>
-                <button 
-                onClick={()=> handleRemove(task._id)}
-                  className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">
+                </button> */}
+                <input
+                  className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green-500 border-green-500 hover:bg-green"
+                  type="checkbox"
+                  name="checked"
+                  id="checked"
+                  onClick={(e) => handleChecked(e.target.checked, task._id)}
+
+
+                />
+                <button
+                  onClick={() => handleRemove(task._id)}
+                  className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red"
+                >
                   Remove
                 </button>
               </div>
-            )}
-</div>
+            ))}
+          </div>
         </div>
       </div>
       {/* <form onSubmit={handleSubmit}>
@@ -91,6 +110,6 @@ const TaskListComponent = ({taskList, sprintId}) => {
       </form> */}
     </div>
   );
-}
+};
 
 export default TaskListComponent;

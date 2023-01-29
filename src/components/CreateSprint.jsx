@@ -3,7 +3,7 @@ import axios from "axios";
 // import TaskListComponent from "../components/TaskListComponent";
 // const API_URL = "http://localhost:5005";
  
-function AddProject(props) {
+function CreateSprint(props) {
   const [title, setTitle] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [currentStatus, setCurrentStatus] = useState("");
@@ -20,6 +20,7 @@ function AddProject(props) {
         setTitle("");
         setDueDate("");
         setCurrentStatus("")
+        props.getAllSprints();
 
       })
       .catch((error) => console.log(error));
@@ -44,6 +45,7 @@ function AddProject(props) {
        
        <label>Status:</label>
        <select name="currentStatus" id="currentStatus"  onChange={(e) => setCurrentStatus(e.target.value)}>
+       <option value="" disabled selected hidden>Choose a status</option>
         <option value="ongoing">ongoing</option>
         <option value="upcoming">upcoming</option>
         <option value="past">past</option>
@@ -54,4 +56,4 @@ function AddProject(props) {
   );
 }
  
-export default AddProject;
+export default CreateSprint;

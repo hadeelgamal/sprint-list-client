@@ -24,7 +24,7 @@ function DashboardPage() {
    
   return (
     <div>DashboardPage
-    <CreateSprint />
+    <CreateSprint getAllSprints={getAllSprints}/>
     {sprints.map((sprint) => 
         <SprintCard key ={sprint._id} {...sprint} />)
         }     
