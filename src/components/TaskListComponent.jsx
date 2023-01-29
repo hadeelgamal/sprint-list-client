@@ -2,24 +2,35 @@ import { useState } from "react";
 import axios from "axios";
 
 
-const TaskListComponent = ({tasks}) => {
+const TaskListComponent = ({taskList, sprintId}) => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [checked, setChecked] = useState(false);
+  const [tasks, setTasks] = useState(taskList)
 
+  const handleRemove = (taskId) =>{
+    axios
+    .delete(`${process.env.REACT_APP_API_URL}/api/tasks/${sprintId}/${taskId}`)
+    .then((response) => {
+      const updatedTaskList = [...tasks.filter(task => !response.data.includes(task._id))]
+      setTasks(updatedTaskList)
+    })
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     // Grab the state variable values
     // Add a new project
-    const newTask = { description, dueDate, checked };
+    const newTask = { description, dueDate, checked, sprintId };
     // Add that project to the DB ==> send a POST request to 'http://localhost:5005/api/projects'
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/tasks`, newTask)
       .then((response) => {
+        const updatedTaskList = [...tasks, response.data]
         // Reset the state
         setDescription("");
         setDueDate("");
         setChecked(false);
+        setTasks(updatedTaskList)
       })
       .catch((error) => console.log(error));
   };
@@ -51,7 +62,9 @@ const TaskListComponent = ({tasks}) => {
                 <button className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green-500 border-green-500 hover:bg-green">
                   Done
                 </button>
-                <button className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">
+                <button 
+                onClick={()=> handleRemove(task._id)}
+                  className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">
                   Remove
                 </button>
               </div>
