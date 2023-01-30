@@ -6,6 +6,8 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from "./pages/DashboardPage";
 import EditSprintPage from "./pages/EditSprintPage";
 import Navbar from "./components/Navbar";
+import IsPrivate from './components/IsPrivate';
+import IsAnon from './components/IsAnon';
 
 
 function App() {
@@ -13,11 +15,11 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<IsAnon><HomePage /></IsAnon>} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />{" "}
-        <Route path="/dashboard" element={<DashboardPage />} />{" "}
-        <Route path="/sprint/:sprintId/edit" element={<EditSprintPage />} />{" "}
+        <Route path="/dashboard" element={<IsPrivate><DashboardPage /></IsPrivate>} />{" "}
+        <Route path="/sprint/:sprintId/edit" element={<IsPrivate><EditSprintPage /></IsPrivate>} />{" "}
 
       </Routes>
     </div>
