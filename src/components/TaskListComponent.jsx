@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const TaskListComponent = ({ taskList, sprintId }) => {
+const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [checked, setChecked] = useState(false);
@@ -9,8 +9,7 @@ const TaskListComponent = ({ taskList, sprintId }) => {
 
   const handleChecked = (e, taskId) =>{
     axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`, {checked: e})
-    console.log("taskid from tasklistcomponenet: ", taskId)
-
+    getAllSprints()
   }
 
   const handleRemove = (taskId) => {
