@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
@@ -7,12 +7,14 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
   // const [checked, setChecked] = useState(false);
   const [tasks, setTasks] = useState(taskList);
 
+
   const handleChecked = (checkedValue, taskId) =>{
     axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`, {checked: checkedValue})
     .then(()=>{
       getAllSprints()
     })
     
+
   }
 
   const handleRemove = (taskId) => {
@@ -37,6 +39,7 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
       .post(`${process.env.REACT_APP_API_URL}/api/tasks`, newTask)
       .then((response) => {
         const updatedTaskList = [...tasks, response.data];
+        console.log("updated task list: ", updatedTaskList)
         // Reset the state
         setDescription("");
         setDueDate("");
@@ -45,6 +48,10 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
       })
       .catch((error) => console.log(error));
   };
+
+    useEffect (() =>{
+      setTasks(taskList);
+    }, [taskList])
   console.log("props tasks from task", tasks);
   return (
     <div className="task">

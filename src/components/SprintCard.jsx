@@ -1,4 +1,5 @@
 import TaskListComponent from "../components/TaskListComponent";
+import { Link } from "react-router-dom";
 
 
 function SprintCard({   _id, title, dueDate, currentStatus, tasks, getAllSprints })  {
@@ -10,6 +11,9 @@ function SprintCard({   _id, title, dueDate, currentStatus, tasks, getAllSprints
         <h3 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{title}</h3>
         <h4 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{dueDate}</h4>
         <h4 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{currentStatus}</h4>
+        <Link to={`/sprint/${_id}/edit`}>
+        <button className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>Edit</button>
+      </Link>  
         </div>
         <TaskListComponent taskList={tasks} sprintId={_id} getAllSprints={getAllSprints}/>
     </div>
