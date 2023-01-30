@@ -1,8 +1,8 @@
 import TaskListComponent from "../components/TaskListComponent";
 
 
-function SprintCard({   _id, title, dueDate, currentStatus, tasks })  {
- console.log("title from sprint card: ", title);
+function SprintCard({   _id, title, dueDate, currentStatus, tasks, getAllSprints })  {
+ 
   return (
     <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
       <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
@@ -11,7 +11,7 @@ function SprintCard({   _id, title, dueDate, currentStatus, tasks })  {
         <h4 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{dueDate}</h4>
         <h4 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{currentStatus}</h4>
         </div>
-        <TaskListComponent taskList={tasks} sprintId={_id}/>
+        <TaskListComponent taskList={tasks} sprintId={_id} getAllSprints={getAllSprints}/>
     </div>
     </div>
   )

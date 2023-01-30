@@ -1,16 +1,18 @@
 import { useState } from "react";
 import axios from "axios";
 
-const TaskListComponent = ({ taskList, sprintId }) => {
+const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [tasks, setTasks] = useState(taskList);
 
-  const handleChecked = (e, taskId) =>{
-    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`, {checked: e})
-    console.log("taskid from tasklistcomponenet: ", taskId)
-
+  const handleChecked = (checkedValue, taskId) =>{
+    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`, {checked: checkedValue})
+    .then(()=>{
+      getAllSprints()
+    })
+    
   }
 
   const handleRemove = (taskId) => {
@@ -29,7 +31,7 @@ const TaskListComponent = ({ taskList, sprintId }) => {
     e.preventDefault();
     // Grab the state variable values
     // Add a new project
-    const newTask = { description, dueDate, checked, sprintId };
+    const newTask = { description, dueDate, sprintId };
     // Add that project to the DB ==> send a POST request to 'http://localhost:5005/api/projects'
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/tasks`, newTask)
@@ -38,7 +40,7 @@ const TaskListComponent = ({ taskList, sprintId }) => {
         // Reset the state
         setDescription("");
         setDueDate("");
-        setChecked(false);
+        // setChecked(false);
         setTasks(updatedTaskList);
       })
       .catch((error) => console.log(error));
@@ -76,9 +78,8 @@ const TaskListComponent = ({ taskList, sprintId }) => {
                   type="checkbox"
                   name="checked"
                   id="checked"
+                  defaultChecked={task.checked}
                   onClick={(e) => handleChecked(e.target.checked, task._id)}
-
-
                 />
                 <button
                   onClick={() => handleRemove(task._id)}
