@@ -78,6 +78,7 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
                   type="checkbox"
                   name="checked"
                   id="checked"
+                  defaultChecked={task.checked}
                   onClick={(e) => handleChecked(e.target.checked, task._id)}
                 />
                 <button

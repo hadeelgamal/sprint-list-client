@@ -43,18 +43,19 @@ function DashboardPage() {
       <h2> ongoing sprints</h2>
     
       { ongoingSprints && ongoingSprints.map((sprint) => (
-        <SprintCard key={sprint._id} {...sprint} />
+        <SprintCard key={sprint._id} {...sprint} getAllSprints={getAllSprints} />
       ))}
       <h2> upcoming sprints</h2>
 
       {upcomingSprints && upcomingSprints.map((sprint) => (
-        <SprintCard key={sprint._id} {...sprint} />
+        <SprintCard key={sprint._id} {...sprint} getAllSprints={getAllSprints} />
       ))}
       <h2> past sprints</h2>
 
       {pastSprints && pastSprints.map((sprint) => (
-        <SprintCard key={sprint._id} {...sprint} />
+        <SprintCard key={sprint._id} {...sprint}  getAllSprints={getAllSprints}/>
       ))}
+
     </div>
   );
 }
