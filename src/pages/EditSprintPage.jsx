@@ -13,6 +13,8 @@ function EditSprintPage(props) {
 
   const { sprintId } = useParams(); 
   const navigate = useNavigate()
+  const storedToken = localStorage.getItem('authToken');
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,14 +22,14 @@ function EditSprintPage(props) {
     const updatedSprint = { title, dueDate, currentStatus };
    
     axios
-      .put(`${process.env.REACT_APP_API_URL}/api/sprints/${sprintId}`, updatedSprint)
+      .put(`${process.env.REACT_APP_API_URL}/api/sprints/${sprintId}`, updatedSprint, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then(() => navigate("/dashboard"))
       .catch(err => console.log(err))
   };
 
   const deleteSprint = () => {              
     axios
-      .delete(`${process.env.REACT_APP_API_URL}/api/sprints/${sprintId}`)
+      .delete(`${process.env.REACT_APP_API_URL}/api/sprints/${sprintId}`, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then(() => {
         navigate("/dashboard");
       })
@@ -36,7 +38,7 @@ function EditSprintPage(props) {
 
   useEffect(() => {                                
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/sprints/${sprintId}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/sprints/${sprintId}`, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then((response) => {
         const oneSprint = response.data;
         setTitle(oneSprint.title);
@@ -46,7 +48,7 @@ function EditSprintPage(props) {
       })
       .catch((error) => console.log(error));
     
-  }, [sprintId]);
+  }, [storedToken, sprintId]);
   console.log("tasks from edit sprint: ", tasks)
   return (
     <div className="AddSprint">

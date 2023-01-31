@@ -9,13 +9,15 @@ function CreateSprint(props) {
   const [currentStatus, setCurrentStatus] = useState("");
 
   const handleSubmit = (e) => {
+    const storedToken = localStorage.getItem("authToken");
+
     e.preventDefault();
     // Grab the state variable values
     // Add a new project
     const newSprint = { title, dueDate, currentStatus };
     // Add that project to the DB ==> send a POST request to 'http://localhost:5005/api/projects'
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/sprints`, newSprint)
+      .post(`${process.env.REACT_APP_API_URL}/api/sprints`, newSprint, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         // Reset the state
         setTitle("");
