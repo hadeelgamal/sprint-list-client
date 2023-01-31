@@ -5,18 +5,27 @@ import { Link } from "react-router-dom";
 function SprintCard({   _id, title, dueDate, currentStatus, tasks, getAllSprints })  {
  
   return (
-    <div className="h-100 w-full  flex items-center justify-center bg-teal-lightest font-sans">
-      <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-        <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-        <h3 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{title}</h3>
-        <h4 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{dueDate}</h4>
-        <h4 className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>{currentStatus}</h4>
-        <Link to={`/sprint/${_id}/edit`}>
-        <button className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>Edit</button>
-      </Link>  
+    <div className="w-full bg-teal-lightest font-sans">
+      <div className=" rounded shadow p-6 m-2">
+        <div className="inline-flex">
+          {/* adjust title */}
+          <h3 className="">{title}</h3>
+          {/* formate date */}
+          <h4 className="">{dueDate}</h4>
+          <h4 className="">{currentStatus}</h4>
+          {/* replace edit button with edit icon  */}
+          <Link to={`/sprint/${_id}/edit`}>
+            <button className="bg-white rounded shadow p-2 m-2 w-full">
+              Edit
+            </button>
+          </Link>
         </div>
-        <TaskListComponent taskList={tasks} sprintId={_id} getAllSprints={getAllSprints}/>
-    </div>
+        <TaskListComponent
+          taskList={tasks}
+          sprintId={_id}
+          getAllSprints={getAllSprints}
+        />
+      </div>
     </div>
   )
 }
