@@ -7,9 +7,11 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
   // const [checked, setChecked] = useState(false);
   const [tasks, setTasks] = useState(taskList);
 
+  const storedToken = localStorage.getItem('authToken');
+
 
   const handleChecked = (checkedValue, taskId) =>{
-    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`, {checked: checkedValue})
+    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${taskId}`, {checked: checkedValue}, { headers: { Authorization: `Bearer ${storedToken}`}})
     .then(()=>{
       getAllSprints()
     })
@@ -20,8 +22,7 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
   const handleRemove = (taskId) => {
     axios
       .delete(
-        `${process.env.REACT_APP_API_URL}/api/tasks/${sprintId}/${taskId}`
-      )
+        `${process.env.REACT_APP_API_URL}/api/tasks/${sprintId}/${taskId}`, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then((response) => {
         const updatedTaskList = [
           ...tasks.filter((task) => response.data.includes(task._id)),
@@ -36,7 +37,7 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
     const newTask = { description, dueDate, sprintId };
     // Add that project to the DB ==> send a POST request to 'http://localhost:5005/api/projects'
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/tasks`, newTask)
+      .post(`${process.env.REACT_APP_API_URL}/api/tasks`, newTask, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then((response) => {
         const updatedTaskList = [...tasks, response.data];
         console.log("updated task list: ", updatedTaskList)

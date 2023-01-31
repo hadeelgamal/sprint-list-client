@@ -10,8 +10,10 @@ function DashboardPage() {
   const [pastSprints, setPastSprints] = useState([]);
 
   const getAllSprints = () => {
+    const storedToken = localStorage.getItem('authToken');
+
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/sprints`)
+      .get(`${process.env.REACT_APP_API_URL}/api/sprints`, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then((response) => {
         const ongoingSprintsFiltered = (response.data.filter((sprint) => sprint.currentStatus.includes("ongoing")));
         setOngoingSprints(ongoingSprintsFiltered);
