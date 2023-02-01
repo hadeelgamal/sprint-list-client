@@ -57,7 +57,7 @@ function DashboardPage() {
       {pastSprints && pastSprints.map((sprint) => (
         <SprintCard key={sprint._id} {...sprint}  getAllSprints={getAllSprints}/>
       ))}
-
+    
     </div>
   );
 }
