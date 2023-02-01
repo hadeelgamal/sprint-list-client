@@ -1,6 +1,7 @@
 import TaskListComponent from "../components/TaskListComponent";
 import { Link } from "react-router-dom";
-
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// <FontAwesomeIcon icon="fa-solid fa-pen-to-square" />    
 
 function SprintCard({   _id, title, dueDate, currentStatus, tasks, getAllSprints })  {
  
@@ -16,8 +17,8 @@ function SprintCard({   _id, title, dueDate, currentStatus, tasks, getAllSprints
           {/* replace edit button with edit icon  */}
           <Link to={`/sprint/${_id}/edit`}>
             <button className="bg-white rounded shadow p-2 m-2 w-full">
-              Edit
-            </button>
+              edit
+        </button>
           </Link>
         </div>
         <TaskListComponent

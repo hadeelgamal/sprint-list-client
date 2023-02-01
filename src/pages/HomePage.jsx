@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import backgroundImage from '../assets/home-page-bg.jpeg'
 
 function HomePage() {
     return (
-      <div style={{'var(--image-url)': backgroundImage}} 
-      className='bg-[image:var(--image-url)]'>
+      <div>
         <section className="py-24 flex items-center min-h-screen justify-center bg-white" >
             <div className="mx-auto max-w-[43rem]">
           <div className="text-center">

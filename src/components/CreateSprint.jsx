@@ -40,6 +40,7 @@ function CreateSprint(props) {
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
 
           <input
@@ -48,12 +49,14 @@ function CreateSprint(props) {
             name="dueDate"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
+            required
           />
           <select
             className="block border border-grey-light w-full p-3 rounded mb-4"
             name="currentStatus"
             id="currentStatus"
             onChange={(e) => setCurrentStatus(e.target.value)}
+            required
           >
             <option value="" disabled selected hidden>
               Choose a status
