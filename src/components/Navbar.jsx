@@ -3,29 +3,22 @@ import { useContext } from "react"; // <== IMPORT
 import { AuthContext } from "../context/auth.context";
 
 function Navbar() {
-  const { isLoggedIn, logOutUser } = useContext(AuthContext);
+  const { user, isLoggedIn, logOutUser } = useContext(AuthContext);
 
   return (
     <nav>
-      {/* {user && <span>Welcome back {user.name}</span>} */}
+      
       <div className="shadow bg-white">
         <div className="h-16 mx-auto px-5 flex items-center justify-between">
-          <Link className="text-2xl hover:text-cyan-500 transition-colors cursor-pointer">
+          <Link className="text-2xl hover:text-cyan-500 transition-colors cursor-pointer" to="/">
             Sprint List
           </Link>
-
+          {user && <span>Welcome back {user.name}</span>}
           <ul className="flex items-center gap-5">
             
             {isLoggedIn && (
               <>
-              <li>
-              <Link
-                className="hover:text-cyan-500 transition-colors"
-                to="/dashboard"
-              >
-                Dashboard
-              </Link>
-            </li>
+              
                 <button
                   className="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
                   onClick={logOutUser}
