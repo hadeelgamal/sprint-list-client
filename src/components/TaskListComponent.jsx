@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash} from "@fortawesome/free-solid-svg-icons";
 
 const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
   const [description, setDescription] = useState("");
@@ -69,7 +69,7 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
-              <button className="flex-no-shrink p-2 border-2 rounded text-teal border-teal-500 hover:text-white hover:bg-teal">
+              <button className="flex-no-shrink p-2 border-2 rounded text-teal border-teal-500 hover:text-white hover:bg-teal-500">
                 Add
               </button>
             </div>
@@ -91,9 +91,9 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
              
               <button
                 onClick={() => handleRemove(task._id)}
-                className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red"
+                className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-red hover:bg-red"
               >
-               Remove
+               <FontAwesomeIcon icon={faTrash} />
               </button>
             </div>
           ))}
