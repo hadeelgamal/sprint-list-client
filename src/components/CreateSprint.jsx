@@ -32,7 +32,7 @@ function CreateSprint(props) {
     <div className="bg-grey-lighter m-4">
       <div className="mx-auto w-2/3 bg-white px-6 py-8 rounded shadow-md text-black  ">
         <h1 className="mb-8 text-3xl text-center">Create Sprint</h1>
-        <form className="inline-flex space-x-10 " onSubmit={handleSubmit}>
+        <form className="lg:inline-flex  md:space-x-10 " onSubmit={handleSubmit}>
           <input
             type="text"
             className="block border border-grey-light w-full p-3 rounded mb-4"

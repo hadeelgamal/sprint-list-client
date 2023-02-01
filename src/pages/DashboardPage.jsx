@@ -46,9 +46,9 @@ function DashboardPage() {
     <div>
     <CreateSprint getAllSprints={getAllSprints} />
 
-    <h2>ongoing sprints</h2>
+    <h2 className="mb-8 text-3xl text-center">ongoing sprints</h2>
 
-    <div className="grid grid-cols-3 grid-flow-row">
+    <div className="grid gird-col-1  md:grid-col-2 lg:grid-cols-3 grid-flow-row">
       {ongoingSprints &&
         ongoingSprints.map((sprint) => (
           <SprintCard
@@ -58,9 +58,9 @@ function DashboardPage() {
           />
         ))}
     </div>
-    <h2>upcoming sprints</h2>
+    <h2 className="mb-8 text-3xl text-center">upcoming sprints</h2>
 
-    <div className="grid grid-cols-3 grid-flow-row">
+    <div className="grid  gird-col-1 md:grid-col-2 lg:grid-cols-3 grid-flow-row">
       {upcomingSprints &&
         upcomingSprints.map((sprint) => (
           <SprintCard
@@ -70,9 +70,9 @@ function DashboardPage() {
           />
         ))}
     </div>
-    <h2> past sprints</h2>
+    <h2 className="mb-8 text-3xl text-center"> past sprints</h2>
 
-    <div className="grid grid-cols-3 grid-flow-row">
+    <div className="grid  gird-col-1  md:grid-col-2 lg:grid-cols-3 grid-flow-row">
       {pastSprints &&
         pastSprints.map((sprint) => (
           <SprintCard
