@@ -89,14 +89,14 @@ function EditSprintPage(props) {
           </select>
           <button
             type="submit"
-            className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1"
+            className="w-full  mb-5 text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1"
           >
             save sprint
           </button>
           <button
             type="submit"
             onClick={deleteSprint}
-            className="w-full text-center py-3 rounded bg-red-500 text-white hover:bg-green-dark focus:outline-none my-1"
+            className="w-full mb-5 text-center py-3 rounded bg-red-500 text-white hover:bg-green-dark focus:outline-none my-1"
           >
             Delete sprint
           </button>
