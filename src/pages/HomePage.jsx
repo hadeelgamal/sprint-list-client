@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
+import backgroundImage from '../assets/home-page-bg.jpeg'
 
 function HomePage() {
     return (
-      <div>
-        <section className="py-24 flex items-center min-h-screen justify-center bg-white" >
+      <div     style={{backgroundImage: `url(${backgroundImage})`, backgroundRepeat: "none"}}      >
+        <section className="py-24 flex items-center min-h-screen justify-center" >
             <div className="mx-auto max-w-[43rem]">
           <div className="text-center">
             <p className="text-lg font-medium leading-8 text-green-600/95">Introducing Sprint List App</p>
-            <h1 className="mt-3 text-[3.5rem] font-bold leading-[4rem] tracking-tight text-black">Transform your tasks from&nbsp;thoughts to action</h1>
+            <h1 className="mt-3 text-[3.5rem] font-bold leading-[4rem] tracking-tight text-white">Transform your tasks from&nbsp;thoughts to action</h1>
             <p className="mt-3 text-lg leading-relaxed text-slate-400">Sprint List helps you keep track of all your tasks in one place. Sign up and start creating sprints filled with your next To-do list.</p>
           </div>
 

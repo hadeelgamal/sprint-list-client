@@ -8,6 +8,7 @@ import EditSprintPage from "./pages/EditSprintPage";
 import Navbar from "./components/Navbar";
 import IsPrivate from './components/IsPrivate';
 import IsAnon from './components/IsAnon';
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/sprint/:sprintId/edit" element={<IsPrivate><EditSprintPage /></IsPrivate>} />{" "}
 
       </Routes>
+      <Footer />
     </div>
   );
 }

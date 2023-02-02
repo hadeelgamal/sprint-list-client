@@ -1,13 +1,17 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Navigate } from "react-router-dom";
+import GridLoader from "react-spinners/GridLoader";
+
  
 function IsPrivate( { children } ) {
   
   const { isLoggedIn, isLoading } = useContext(AuthContext);
  
   // If the authentication is still loading 
-  if (isLoading) return <p>Loading ...</p>;
+  // if (isLoading) return <p>loading...</p>;
+  if (isLoading) return <GridLoader color="#1abe4c" style = { {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"} } />;
+
  
   if (!isLoggedIn) {
   // If the user is not logged in 
