@@ -42,7 +42,6 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
       .post(`${process.env.REACT_APP_API_URL}/api/tasks`, newTask, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then((response) => {
         const updatedTaskList = [...tasks, response.data];
-        console.log("updated task list: ", updatedTaskList)
         // Reset the state
         setDescription("");
         setDueDate("");
@@ -55,7 +54,6 @@ const TaskListComponent = ({ taskList, sprintId, getAllSprints }) => {
     useEffect (() =>{
       setTasks(taskList);
     }, [taskList])
-  console.log("props tasks from task", tasks);
   return (
     <div className="task">
     <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">

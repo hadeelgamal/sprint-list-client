@@ -30,15 +30,12 @@ function DashboardPage() {
       .then((response) => {
         const ongoingSprintsFiltered = (response.data.filter((sprint) => sprint.currentStatus.includes("ongoing")));
         setOngoingSprints(ongoingSprintsFiltered);
-        console.log("ongoing sprints: ", ongoingSprintsFiltered)
 
         const upcomingSprintsFiltered = (response.data.filter((sprint) => sprint.currentStatus.includes("upcoming")));
         setUpcomingSprints(upcomingSprintsFiltered);
-        console.log("upcoming sprints: ", upcomingSprintsFiltered)
 
         const pastSprintsFiltered = (response.data.filter((sprint) =>sprint.currentStatus.includes("past")));
         setPastSprints(pastSprintsFiltered);
-        console.log("past sprints: ", pastSprintsFiltered)
 
       })
       .catch((error) => console.log(error));
