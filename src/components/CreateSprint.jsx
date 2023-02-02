@@ -6,7 +6,7 @@ import axios from "axios";
 function CreateSprint(props) {
   const [title, setTitle] = useState("");
   const [dueDate, setDueDate] = useState("");
-  const [currentStatus, setCurrentStatus] = useState("");
+  const [currentStatus, setCurrentStatus] = useState("ongoing");
 
   const handleSubmit = (e) => {
     const storedToken = localStorage.getItem("authToken");
@@ -22,7 +22,7 @@ function CreateSprint(props) {
         // Reset the state
         setTitle("");
         setDueDate("");
-        setCurrentStatus("");
+        // setCurrentStatus("");
         props.getAllSprints();
       })
       .catch((error) => console.log(error));
@@ -57,10 +57,8 @@ function CreateSprint(props) {
             id="currentStatus"
             onChange={(e) => setCurrentStatus(e.target.value)}
             required
+            defaultValue={"ongoing"}
           >
-            <option value="" disabled selected hidden>
-              Choose a status
-            </option>
             <option value="ongoing">ongoing</option>
             <option value="upcoming">upcoming</option>
             <option value="past">past</option>
