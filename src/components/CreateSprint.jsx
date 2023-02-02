@@ -67,7 +67,7 @@ function CreateSprint(props) {
           </select>
           <button
             type="submit"
-            className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1"
+            className="w-full mb-5 text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1"
           >
             create sprint
           </button>
