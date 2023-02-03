@@ -1,5 +1,52 @@
-# Getting Started with Create React App
+# Sprint List Server
 
+## Links
+Deployment: https://sprint-list.netlify.app/
+Server: https://github.com/hadeelgamal/sprint-list-server
+
+
+## Description
+
+It is a to do list app where you can create “sprints" and start adding a list of tasks.
+
+## User Stories
+
+-  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
+-  **Signup:** As an anon I can sign up in the platform so that I can start creating sprints
+-  **Login:** As a user I can login to the platform so that I can see my 
+-  **Logout:** As a user I can logout from the platform so no one else can use it
+-  **Create Sprints** As a user I can add a sprint so that I can start adding tasks
+
+
+## Routes
+
+- /auth/signup 
+- /auth/login
+- /auth/logout  
+- /api/sprints
+- /api/sprints/:sprintId - Return the specified sprint using the id
+- /api/sprints/:sprintId - Edit specified sprint
+- /api/sprints/:sprintId  - Delete specified project
+- /api/tasks  -  Creates a new task
+- /api/tasks  -  update tasks
+- /api/tasks/:taskId  - Delete specified task
+
+## Pages
+
+- Home Page (public)
+- Dashboard Page
+- Edit Sprint Page
+- Login Page
+- Sign up Page
+
+## Components
+- Navbar
+- Footer
+- Create Sprint
+- Sprint Card
+- TaskList Component 
+
+## IO
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
